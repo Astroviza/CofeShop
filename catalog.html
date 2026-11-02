@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Каталог — Кофейня</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script>window.BASE = '';</script>
+</head>
+<body>
+  <div class="site-wrapper">
+    <aside id="sidebar" class="sidebar"></aside>
+    <div class="content-area">
+      <main>
+        <h1>Каталог</h1>
+        <div class="catalog-toolbar" style="margin-bottom:15px;">
+          <input id="search" type="search" placeholder="Поиск по названию..." style="padding:4px; border:1px solid #000;">
+          <select id="category-filter" style="padding:4px; border:1px solid #000;">
+            <option value="all">Все категории</option>
+            <option value="coffee">Кофе</option>
+            <option value="drinks">Напитки</option>
+            <option value="desserts">Десерты</option>
+            <option value="bakery">Выпечка</option>
+          </select>
+          <select id="sort" style="padding:4px; border:1px solid #000;">
+            <option value="default">По умолчанию</option>
+            <option value="price-asc">Цена по возрастанию</option>
+            <option value="price-desc">Цена по убыванию</option>
+            <option value="name">По названию</option>
+          </select>
+        </div>
+        <div class="catalog-count" id="catalog-count" style="margin-bottom:15px;"></div>
+        <div class="product-grid" id="catalog-grid"></div>
+      </main>
+      <div id="footer"></div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/catalog.js"></script>
+</body>
+</html>

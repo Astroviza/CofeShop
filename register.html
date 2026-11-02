@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Регистрация — Кофейня</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script>window.BASE = '';</script>
+</head>
+<body>
+  <div class="site-wrapper">
+    <aside id="sidebar" class="sidebar"></aside>
+    <div class="content-area">
+      <main>
+        <div class="auth-wrap" style="max-width:400px; border:1px solid #000; padding:20px;">
+          <h1>Регистрация</h1>
+          <form id="register-form">
+            <label class="field"><span>Логин</span><input name="login" required></label>
+            <label class="field"><span>Пароль</span><input name="password" type="password" required></label>
+            <label class="field"><span>Повторите пароль</span><input name="password2" type="password" required></label>
+            <button type="submit" class="btn btn--primary btn--block">Создать аккаунт</button>
+          </form>
+          <p style="margin-top:15px; text-align:center; font-size:14px;">Есть аккаунт? <a href="login.html">Войти</a></p>
+        </div>
+      </main>
+      <div id="footer"></div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
