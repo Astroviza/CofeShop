@@ -1,9 +1,9 @@
 'use strict';
 window.BASE = window.BASE || '';
 
-function renderSidebar() {
-  const sidebar = qs('#sidebar');
-  if (!sidebar) return;
+function renderHeader() {
+  const header = qs('#header');
+  if (!header) return;
   const user = getCurrentUser();
   
   const adminLink = isAdmin()
@@ -11,21 +11,26 @@ function renderSidebar() {
     : '';
     
   const authHtml = user
-    ? '<div style="margin-bottom:10px;">Пользователь:<br><b>' + escapeHtml(user.login) + '</b></div>' +
-      '<button class="btn btn--block" id="logout-btn">Выйти</button>'
-    : '<a href="' + BASE + 'login.html" class="btn btn--block">Вход</a>' +
-      '<a href="' + BASE + 'register.html" class="btn btn--block">Регистрация</a>';
+    ? '<span class="user-name">' + escapeHtml(user.login) + '</span>' +
+      '<button class="btn btn--ghost btn--sm" id="logout-btn">Выйти</button>'
+    : '<a href="' + BASE + 'login.html" class="btn btn--ghost btn--sm">Вход</a>' +
+      '<a href="' + BASE + 'register.html" class="btn btn--primary btn--sm">Регистрация</a>';
 
-  sidebar.innerHTML =
-    '<div class="logo"><a href="' + BASE + 'index.html">Кофейня</a></div>' +
-    '<hr style="border:0;border-top:1px solid #000;margin:0 0 15px 0;">' +
-    '<nav class="nav">' +
-      '<a href="' + BASE + 'catalog.html">Каталог</a>' +
-      '<a href="' + BASE + 'blog.html">Блог</a>' +
-      '<a href="' + BASE + 'cart.html">Корзина (<span id="cart-badge">0</span>)</a>' +
-      adminLink +
-    '</nav>' +
-    '<div class="auth-block">' + authHtml + '</div>';
+  header.innerHTML =
+    '<header class="header">' +
+      '<div class="container header__inner">' +
+        '<a href="' + BASE + 'index.html" class="logo">Кофейня</a>' +
+        '<nav class="nav" id="nav">' +
+          '<a href="' + BASE + 'catalog.html">Каталог</a>' +
+          '<a href="' + BASE + 'blog.html">Блог</a>' +
+          adminLink +
+        '</nav>' +
+        '<div class="header__actions">' +
+          '<a href="' + BASE + 'cart.html" class="cart-link">Корзина <span id="cart-badge" class="cart-badge">0</span></a>' +
+          authHtml +
+        '</div>' +
+      '</div>' +
+    '</header>';
 
   const logoutBtn = qs('#logout-btn');
   if (logoutBtn) logoutBtn.addEventListener('click', function () { logout(); location.reload(); });
@@ -35,8 +40,11 @@ function renderFooter() {
   const footer = qs('#footer');
   if (!footer) return;
   footer.innerHTML = 
-    '<footer style="border-top:1px solid #000; margin-top:40px; padding-top:10px; font-size:14px;">' +
-      '<div>Кофейня. Учебный проект.</div>' +
+    '<footer class="footer">' +
+      '<div class="container">' +
+        '<div style="font-family: var(--font-heading); font-size: 24px; color: var(--c-text); margin-bottom: 8px;">Кофейня</div>' +
+        '<div>© 2024 Учебный проект. Все права защищены.</div>' +
+      '</div>' +
     '</footer>';
 }
 
@@ -44,9 +52,8 @@ document.addEventListener('DOMContentLoaded', async function () {
   if (typeof loadDatabase === 'function') {
     await loadDatabase();
   }
-  renderSidebar();
+  renderHeader();
   renderFooter();
   updateCartBadge();
-  
   document.dispatchEvent(new Event('dbLoaded'));
 });

@@ -10,15 +10,15 @@ document.addEventListener('dbLoaded', function () {
 
   function render() {
     root.innerHTML =
-      '<div class="admin-toolbar"><h2>Товары (' + PRODUCTS.length + ')</h2><button class="btn" id="add-product">Добавить товар</button></div>' +
+      '<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;"><h2>Товары (' + PRODUCTS.length + ')</h2><button class="btn btn--primary btn--sm" id="add-product">Добавить товар</button></div>' +
       '<div class="table-wrap"><table><thead><tr><th>Фото</th><th>Название</th><th>Категория</th><th>Цена</th><th>Склад</th><th>Действия</th></tr></thead><tbody>' +
       PRODUCTS.map(p => 
         '<tr>' +
           '<td><img src="' + (window.BASE || '') + escapeHtml(p.image || '') + '" style="height:40px;width:40px;object-fit:contain;"></td>' +
           '<td>' + escapeHtml(p.name) + '</td><td>' + escapeHtml(p.category) + '</td><td>' + formatPrice(p.price) + '</td><td>' + p.stock + '</td>' +
           '<td><div class="table__actions">' +
-            '<button class="btn btn--sm" data-edit="' + p.id + '">Ред.</button>' +
-            '<button class="btn btn--sm btn--danger" data-delete="' + p.id + '">Удал.</button>' +
+            '<button class="btn btn--ghost btn--sm" data-edit="' + p.id + '">Ред.</button>' +
+            '<button class="btn btn--danger btn--sm" data-delete="' + p.id + '">Удал.</button>' +
           '</div></td>' +
         '</tr>'
       ).join('') +
@@ -40,8 +40,8 @@ document.addEventListener('dbLoaded', function () {
     const p = id ? PRODUCTS.find(x => x.id === id) : { name: '', description: '', price: 0, category: 'coffee', stock: 0, image: 'icons/' };
       
     qs('#product-form-wrap').innerHTML =
-      '<form class="panel form" id="product-form">' +
-        '<h3>' + (id ? 'Редактирование' : 'Новый') + ' товар</h3>' +
+      '<form class="panel form" id="product-form" style="margin-top:30px; border-top:1px solid #ccc; padding-top:20px;">' +
+        '<h3 style="margin-bottom:20px;">' + (id ? 'Редактирование' : 'Новый') + ' товар</h3>' +
         '<label class="field"><span>Название</span><input name="name" required value="' + escapeHtml(p.name) + '"></label>' +
         '<label class="field"><span>Описание</span><textarea name="description" rows="2">' + escapeHtml(p.description) + '</textarea></label>' +
         '<label class="field"><span>Цена</span><input type="number" name="price" required min="0" value="' + p.price + '"></label>' +
@@ -49,8 +49,8 @@ document.addEventListener('dbLoaded', function () {
             ['coffee', 'drinks', 'desserts', 'bakery'].map(c => '<option value="' + c + '"' + (c === p.category ? ' selected' : '') + '>' + c + '</option>').join('') +
           '</select></label>' +
         '<label class="field"><span>Остаток</span><input type="number" name="stock" min="0" value="' + p.stock + '"></label>' +
-        '<label class="field"><span>Путь к картинке</span><input name="image" value="' + escapeHtml(p.image || '') + '"></label>' +
-        '<div class="form__actions"><button type="submit" class="btn btn--primary">Сохранить</button><button type="button" class="btn" id="cancel-form">Отмена</button></div>' +
+        '<label class="field"><span>Путь к картинке (напр. icons/latte.webp)</span><input name="image" value="' + escapeHtml(p.image || '') + '"></label>' +
+        '<div class="form__actions"><button type="submit" class="btn btn--primary">Сохранить</button><button type="button" class="btn btn--ghost" id="cancel-form">Отмена</button></div>' +
       '</form>';
 
     qs('#cancel-form').addEventListener('click', () => qs('#product-form-wrap').innerHTML = '');
@@ -81,13 +81,13 @@ document.addEventListener('dbLoaded', function () {
 
   function render() {
     root.innerHTML =
-      '<div class="admin-toolbar"><h2>Статьи (' + POSTS.length + ')</h2><button class="btn" id="add-post">Добавить статью</button></div>' +
+      '<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;"><h2>Статьи (' + POSTS.length + ')</h2><button class="btn btn--primary btn--sm" id="add-post">Добавить статью</button></div>' +
       '<div class="table-wrap"><table><thead><tr><th>ID</th><th>Заголовок</th><th>Автор</th><th>Дата</th><th>Действия</th></tr></thead><tbody>' +
       POSTS.map(p => 
         '<tr><td>' + p.id + '</td><td>' + escapeHtml(p.title) + '</td><td>' + escapeHtml(p.author) + '</td><td>' + new Date(p.date).toLocaleDateString('ru-RU') + '</td>' +
         '<td><div class="table__actions">' +
-          '<button class="btn btn--sm" data-edit="' + p.id + '">Ред.</button>' +
-          '<button class="btn btn--sm btn--danger" data-delete="' + p.id + '">Удал.</button>' +
+          '<button class="btn btn--ghost btn--sm" data-edit="' + p.id + '">Ред.</button>' +
+          '<button class="btn btn--danger btn--sm" data-delete="' + p.id + '">Удал.</button>' +
         '</div></td></tr>'
       ).join('') +
       '</tbody></table></div><div id="post-form-wrap"></div>';
@@ -108,14 +108,14 @@ document.addEventListener('dbLoaded', function () {
     const p = id ? POSTS.find(x => x.id === id) : { title: '', author: 'Редакция', date: new Date().toISOString().slice(0, 10), excerpt: '', content: '' };
     
     qs('#post-form-wrap').innerHTML =
-      '<form class="panel form" id="post-form">' +
-        '<h3>' + (id ? 'Редактирование' : 'Новая') + ' статья</h3>' +
+      '<form class="panel form" id="post-form" style="margin-top:30px; border-top:1px solid #ccc; padding-top:20px;">' +
+        '<h3 style="margin-bottom:20px;">' + (id ? 'Редактирование' : 'Новая') + ' статья</h3>' +
         '<label class="field"><span>Заголовок</span><input name="title" required value="' + escapeHtml(p.title) + '"></label>' +
         '<label class="field"><span>Автор</span><input name="author" value="' + escapeHtml(p.author) + '"></label>' +
         '<label class="field"><span>Дата</span><input type="date" name="date" value="' + p.date.slice(0, 10) + '"></label>' +
         '<label class="field"><span>Краткое описание</span><textarea name="excerpt" rows="2">' + escapeHtml(p.excerpt) + '</textarea></label>' +
         '<label class="field"><span>Текст</span><textarea name="content" rows="6">' + escapeHtml(p.content) + '</textarea></label>' +
-        '<div class="form__actions"><button type="submit" class="btn btn--primary">Сохранить</button><button type="button" class="btn" id="cancel-form">Отмена</button></div>' +
+        '<div class="form__actions"><button type="submit" class="btn btn--primary">Сохранить</button><button type="button" class="btn btn--ghost" id="cancel-form">Отмена</button></div>' +
       '</form>';
 
     qs('#cancel-form').addEventListener('click', () => qs('#post-form-wrap').innerHTML = '');
@@ -146,12 +146,12 @@ document.addEventListener('dbLoaded', async function () {
     const orders = await res.json();
 
     if (!orders.length) {
-      root.innerHTML = '<div class="admin-empty"><p>Заказов нет.</p></div>';
+      root.innerHTML = '<p>Заказов нет.</p>';
       return;
     }
 
     root.innerHTML = 
-      '<div class="admin-toolbar"><h2>Всего заказов: ' + orders.length + '</h2></div>' +
+      '<div style="margin-bottom:20px;"><h2>Всего заказов: ' + orders.length + '</h2></div>' +
       '<div class="table-wrap"><table><thead><tr><th>Чек №</th><th>Дата</th><th>Покупатель</th><th>Сумма</th><th>Состав</th><th>Действия</th></tr></thead><tbody>' +
       orders.map(o => {
         const itemsStr = o.items.map(i => escapeHtml(i.name) + ' x ' + i.qty).join(', ');
@@ -160,7 +160,7 @@ document.addEventListener('dbLoaded', async function () {
           '<td>' + escapeHtml(o.customerName) + '<br><small>' + escapeHtml(o.customerPhone) + '</small></td>' +
           '<td>' + formatPrice(o.total) + '</td><td style="font-size:12px;">' + itemsStr + '</td>' +
           '<td><div class="table__actions">' +
-            '<button class="btn btn--sm btn--danger" data-delete-order="' + o.id + '">Удал.</button>' +
+            '<button class="btn btn--danger btn--sm" data-delete-order="' + o.id + '">Удал.</button>' +
           '</div></td>' +
         '</tr>';
       }).join('') +

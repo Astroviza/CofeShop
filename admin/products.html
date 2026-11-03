@@ -8,26 +8,22 @@
   <script>window.BASE = '../';</script>
 </head>
 <body>
-  <div class="site-wrapper">
-    <aside id="sidebar" class="sidebar"></aside>
-    <div class="content-area">
-      <main>
-        <h1>Управление товарами</h1>
-        <div class="admin-layout">
-          <nav class="admin__nav">
-            <a href="dashboard.html">Статистика</a>
-            <a href="orders.html">Заказы</a>
-            <a href="products.html" class="is-active">Товары</a>
-            <a href="content.html">Контент</a>
-          </nav>
-          <div class="admin__main">
-            <div id="admin-products"></div>
-          </div>
-        </div>
-      </main>
-      <div id="footer"></div>
+  <div id="header"></div>
+  <main class="container" style="padding-top: 40px;">
+    <h1 style="font-family: var(--font-heading); font-size: 42px; margin-bottom: 32px;">Товары</h1>
+    <div class="admin-layout">
+      <nav class="admin__nav">
+        <a href="dashboard.html">Статистика</a>
+        <a href="orders.html">Заказы</a>
+        <a href="products.html" class="is-active">Товары</a>
+        <a href="content.html">Контент</a>
+      </nav>
+      <div class="admin__main">
+        <div id="admin-products"></div>
+      </div>
     </div>
-  </div>
+  </main>
+  <div id="footer"></div>
 
   <script src="../js/data.js"></script>
   <script src="../js/utils.js"></script>

@@ -8,33 +8,29 @@
   <script>window.BASE = '';</script>
 </head>
 <body>
-  <div class="site-wrapper">
-    <aside id="sidebar" class="sidebar"></aside>
-    <div class="content-area">
-      <main>
-        <h1>Каталог</h1>
-        <div class="catalog-toolbar" style="margin-bottom:15px;">
-          <input id="search" type="search" placeholder="Поиск по названию..." style="padding:4px; border:1px solid #000;">
-          <select id="category-filter" style="padding:4px; border:1px solid #000;">
-            <option value="all">Все категории</option>
-            <option value="coffee">Кофе</option>
-            <option value="drinks">Напитки</option>
-            <option value="desserts">Десерты</option>
-            <option value="bakery">Выпечка</option>
-          </select>
-          <select id="sort" style="padding:4px; border:1px solid #000;">
-            <option value="default">По умолчанию</option>
-            <option value="price-asc">Цена по возрастанию</option>
-            <option value="price-desc">Цена по убыванию</option>
-            <option value="name">По названию</option>
-          </select>
-        </div>
-        <div class="catalog-count" id="catalog-count" style="margin-bottom:15px;"></div>
-        <div class="product-grid" id="catalog-grid"></div>
-      </main>
-      <div id="footer"></div>
+  <div id="header"></div>
+  <main class="container" style="padding-top: 40px;">
+    <h1 style="font-family: var(--font-heading); font-size: 42px; margin-bottom: 24px;">Каталог</h1>
+    <div class="catalog-toolbar">
+      <input id="search" type="search" placeholder="Поиск по названию...">
+      <select id="category-filter">
+        <option value="all">Все категории</option>
+        <option value="coffee">Кофе</option>
+        <option value="drinks">Напитки</option>
+        <option value="desserts">Десерты</option>
+        <option value="bakery">Выпечка</option>
+      </select>
+      <select id="sort">
+        <option value="default">По умолчанию</option>
+        <option value="price-asc">Цена по возрастанию</option>
+        <option value="price-desc">Цена по убыванию</option>
+        <option value="name">По названию</option>
+      </select>
     </div>
-  </div>
+    <div class="catalog-count" id="catalog-count" style="margin-bottom: 24px; color: var(--c-text-muted);"></div>
+    <div class="product-grid" id="catalog-grid"></div>
+  </main>
+  <div id="footer"></div>
 
   <script src="js/data.js"></script>
   <script src="js/utils.js"></script>

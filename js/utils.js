@@ -34,12 +34,12 @@ function toast(message, type) {
   }, 2500);
 }
 
-// Убрали смайлик кофе, если нет картинки
+// Заменили смайлик на текст
 function productVisual(p) {
   if (p.image) {
     return '<div class="product-visual"><img src="' + (window.BASE || '') + escapeHtml(p.image) + '" alt="' + escapeHtml(p.name) + '" loading="lazy"></div>';
   }
-  return '<div class="product-visual"><span style="color:#999;font-size:12px;">Нет фото</span></div>';
+  return '<div class="product-visual"><span style="color:#999;font-size:14px;">Нет фото</span></div>';
 }
 
 function generateReceiptNumber() {
