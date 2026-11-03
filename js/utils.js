@@ -34,7 +34,6 @@ function toast(message, type) {
   }, 2500);
 }
 
-// Заменили смайлик на текст
 function productVisual(p) {
   if (p.image) {
     return '<div class="product-visual"><img src="' + (window.BASE || '') + escapeHtml(p.image) + '" alt="' + escapeHtml(p.name) + '" loading="lazy"></div>';
